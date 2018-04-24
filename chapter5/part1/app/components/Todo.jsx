@@ -11,26 +11,25 @@ class Todo extends React.Component {
     this.state = {
       todos: TodoStore.getAll()
     };
-    this.createTodo = this.createTodo.bind(this);
-    this.deleteTodo = this.deleteTodo.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.createTodo = () => {
+      // 创建 Todo 的事件回调
+      TodoAction.create({ id: uuid.v4(), content: '3rd stuff' });
+    };
+    this.deleteTodo = id => {
+      // 删除 Todo 的事件回调
+      TodoAction.delete(id);
+    };
+    this.onChange = () => {
+      this.setState({
+        todos: TodoStore.getAll()
+      });
+    };
   }
   componentDidMount() {
     TodoStore.addChangeListener(this.onChange);
   }
   componentWillUnmount() {
     TodoStore.removeChangeListener(this.onChange);
-  }
-  onChange() {
-    this.setState({
-      todos: TodoStore.getAll()
-    });
-  }
-  createTodo() {
-    TodoAction.create({ id: uuid.v4(), content: '3rd stuff' });
-  }
-  deleteTodo(id) {
-    TodoAction.delete(id);
   }
   render() {
     return (

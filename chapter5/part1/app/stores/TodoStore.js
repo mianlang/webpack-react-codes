@@ -4,7 +4,10 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import uuid from 'uuid';
 
 const TodoStore = assign({}, EventEmitter.prototype, {
-  todos: [{ id: uuid.v4(), content: 'first one' }, { id: uuid.v4(), content: '2nd one' }],
+  todos: [
+    { id: uuid.v4(), content: 'first one' },
+    { id: uuid.v4(), content: '2nd one' }
+  ],
   getAll() {
     return this.todos;
   },
@@ -25,7 +28,7 @@ const TodoStore = assign({}, EventEmitter.prototype, {
   }
 });
 
-AppDispatcher.register((action) => {
+AppDispatcher.register(action => {
   switch (action.actionType) {
     case 'CREATE_TODO':
       TodoStore.addTodo(action.todo);
@@ -36,8 +39,7 @@ AppDispatcher.register((action) => {
       TodoStore.emitChange();
       break;
     default:
-      //  nothing to do here
-
+    //  nothing to do here
   }
 });
 export default TodoStore;
