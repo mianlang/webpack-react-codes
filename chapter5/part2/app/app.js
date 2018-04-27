@@ -28,11 +28,8 @@ const initalPostsState = [];
 
 const initalUserState = {
   isLogin: false,
-  userData: {
-
-  }
+  userData: {}
 };
-
 
 // action names
 const CREATE_POST = 'CREATE_POST';
@@ -105,11 +102,10 @@ store.dispatch(createPost({ id: 2, title: 'the second title' }));
 
 // delete one post
 document.body.innerHTML += '<h2>删除一篇文章</h2>';
-store.dispatch(deletePost(1));
+store.dispatch(deletePost(2));
 // store.dispatch({type: DELETE_POST, id: 1});
 
 // User login
 document.body.innerHTML += '<h2>用户登录</h2>';
 store.dispatch(userLogin({ name: 'viking', email: 'viking@v.me' }));
 // store.dispatch({type: USER_LOGIN, data: {name: 'viking', email: 'viking@v.me'}});
-
